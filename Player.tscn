@@ -1,0 +1,341 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="BoxShape" id=2]
+
+extents = Vector3( 1, 1, 1 )
+
+[sub_resource type="CapsuleMesh" id=3]
+
+radius = 1.0
+mid_height = 1.0
+radial_segments = 64
+rings = 8
+
+[sub_resource type="CapsuleShape" id=4]
+
+radius = 1.0
+height = 1.0
+
+[sub_resource type="CubeMesh" id=5]
+
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="BoxShape" id=6]
+
+extents = Vector3( 1, 1, 1 )
+
+[node name="Player" type="Spatial"]
+
+script = ExtResource( 1 )
+ARM_SPEED = 50
+
+[node name="Torso" type="StaticBody" parent="." index="0"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="Torso" index="0"]
+
+transform = Transform( 0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.2, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 1 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Torso" index="1"]
+
+transform = Transform( 0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 2 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="HingeJoint" type="Generic6DOFJoint" parent="Torso" index="2"]
+
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.648192, 0.399026, 0 )
+nodes/node_a = NodePath("..")
+nodes/node_b = NodePath("../Bicep")
+solver/priority = 1
+collision/exclude_nodes = true
+linear_limit_x/enabled = true
+linear_limit_x/upper_distance = 0.0
+linear_limit_x/lower_distance = 0.0
+linear_limit_x/softness = 0.7
+linear_limit_x/restitution = 0.5
+linear_limit_x/damping = 1.0
+angular_limit_x/enabled = true
+angular_limit_x/upper_angle = 0.0
+angular_limit_x/lower_angle = 0.0
+angular_limit_x/softness = 0.5
+angular_limit_x/restitution = 0.0
+angular_limit_x/damping = 1.0
+angular_limit_x/force_limit = 0.0
+angular_limit_x/erp = 0.5
+angular_motor_x/enabled = false
+angular_motor_x/target_velocity = 0.0
+angular_motor_x/force_limit = 300.0
+linear_limit_y/enabled = true
+linear_limit_y/upper_distance = 0.0
+linear_limit_y/lower_distance = 0.0
+linear_limit_y/softness = 0.7
+linear_limit_y/restitution = 0.5
+linear_limit_y/damping = 1.0
+angular_limit_y/enabled = true
+angular_limit_y/upper_angle = 0.0
+angular_limit_y/lower_angle = 0.0
+angular_limit_y/softness = 0.5
+angular_limit_y/restitution = 0.0
+angular_limit_y/damping = 1.0
+angular_limit_y/force_limit = 0.0
+angular_limit_y/erp = 0.5
+angular_motor_y/enabled = false
+angular_motor_y/target_velocity = 0.0
+angular_motor_y/force_limit = 300.0
+linear_limit_z/enabled = true
+linear_limit_z/upper_distance = 0.0
+linear_limit_z/lower_distance = 0.0
+linear_limit_z/softness = 0.7
+linear_limit_z/restitution = 0.5
+linear_limit_z/damping = 1.0
+angular_limit_z/enabled = true
+angular_limit_z/upper_angle = 0.0
+angular_limit_z/lower_angle = 0.0
+angular_limit_z/softness = 0.5
+angular_limit_z/restitution = 0.0
+angular_limit_z/damping = 1.0
+angular_limit_z/force_limit = 0.0
+angular_limit_z/erp = 0.5
+angular_motor_z/enabled = false
+angular_motor_z/target_velocity = 0.0
+angular_motor_z/force_limit = 300.0
+_sections_unfolded = [ "Transform", "angular_limit", "nodes" ]
+
+[node name="Bicep" type="RigidBody" parent="Torso" index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.646682, 0.871668, 0 )
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+linear_velocity = Vector3( 0, 0, 0 )
+linear_damp = -1.0
+angular_velocity = Vector3( 0, 0, 0 )
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="Torso/Bicep" index="0"]
+
+transform = Transform( 0.05, 0, 0, 0, -2.18557e-09, -0.3, 0, 0.05, -1.31134e-08, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Torso/Bicep" index="1"]
+
+transform = Transform( 0.05, 0, 0, 0, -2.18557e-09, -0.3, 0, 0.05, -1.31134e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="HingeJoint" type="HingeJoint" parent="Torso/Bicep" index="2"]
+
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.467109, 0 )
+nodes/node_a = NodePath("..")
+nodes/node_b = NodePath("../Forearm")
+solver/priority = 1
+collision/exclude_nodes = true
+params/bias = 0.3
+angular_limit/enable = true
+angular_limit/upper = 90.0
+angular_limit/lower = -90.0
+angular_limit/bias = 0.3
+angular_limit/softness = 0.9
+angular_limit/relaxation = 1.0
+motor/enable = false
+motor/target_velocity = 1.0
+motor/max_impulse = 1.0
+_sections_unfolded = [ "Transform", "angular_limit", "nodes" ]
+
+[node name="Forearm" type="RigidBody" parent="Torso/Bicep" index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.907039, 0.00305581 )
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+linear_velocity = Vector3( 0, 0, 0 )
+linear_damp = -1.0
+angular_velocity = Vector3( 0, 0, 0 )
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="Torso/Bicep/Forearm" index="0"]
+
+transform = Transform( 0.05, 0, 0, 0, -2.18557e-09, -0.3, 0, 0.05, -1.31134e-08, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Torso/Bicep/Forearm" index="1"]
+
+transform = Transform( 0.05, 0, 0, 0, -2.18557e-09, -0.3, 0, 0.05, -1.31134e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="HingeJoint" type="HingeJoint" parent="Torso/Bicep/Forearm" index="2"]
+
+transform = Transform( -4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.440949, 0 )
+nodes/node_a = NodePath("..")
+nodes/node_b = NodePath("../Hand")
+solver/priority = 1
+collision/exclude_nodes = true
+params/bias = 0.3
+angular_limit/enable = true
+angular_limit/upper = 90.0
+angular_limit/lower = -90.0
+angular_limit/bias = 0.3
+angular_limit/softness = 0.9
+angular_limit/relaxation = 1.0
+motor/enable = false
+motor/target_velocity = 1.0
+motor/max_impulse = 1.0
+_sections_unfolded = [ "Transform", "Visibility", "angular_limit", "collision", "nodes", "params", "solver" ]
+
+[node name="Hand" type="RigidBody" parent="Torso/Bicep/Forearm" index="3"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521367, 0 )
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+linear_velocity = Vector3( 0, 0, 0 )
+linear_damp = -1.0
+angular_velocity = Vector3( 0, 0, 0 )
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="Torso/Bicep/Forearm/Hand" index="0"]
+
+transform = Transform( 0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.02, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 5 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="Torso/Bicep/Forearm/Hand" index="1"]
+
+transform = Transform( 0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.02, 0, 0, 0 )
+shape = SubResource( 6 )
+disabled = false
+_sections_unfolded = [ "Transform" ]
+
+
