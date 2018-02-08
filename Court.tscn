@@ -217,7 +217,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Ball" parent="." index="4" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.745747, 3.34881, -0.219692 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.910076, 3.34881, -0.219692 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ArmPath" type="Path" parent="." index="5"]

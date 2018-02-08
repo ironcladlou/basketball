@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	$ArmPath/ArmPathFollow.offset = 0.1
+	set_process_input(true)
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
@@ -19,12 +20,16 @@ func _physics_process(delta):
 	if $ArmPath/ArmPathFollow.offset > 1:
 		$ArmPath/ArmPathFollow.offset = 1
 
-func _input(ev):
-	print("Input event:" + ev.as_text())
-	if ev is InputEventMouseMotion:
-		print("Mouse motion event: x=" + str(ev.relative.x) + ",y=" + str(ev.relative.y))
-	if ev is InputEventMouseButton:
-		print("Mouse button event: pressed", str(ev.pressed))
+func _input(event):
+	if event is InputEventMouseMotion:
+		if event.relative.y < 0:
+			$ArmPath/ArmPathFollow.offset += 0.05
+		if event.relative.y > 0:
+			$ArmPath/ArmPathFollow.offset -= 0.05
+		if $ArmPath/ArmPathFollow.offset < 0.1:
+			$ArmPath/ArmPathFollow.offset = 0.1
+		if $ArmPath/ArmPathFollow.offset > 1:
+			$ArmPath/ArmPathFollow.offset = 1
 
 func reset():
 	get_tree().reload_current_scene()
