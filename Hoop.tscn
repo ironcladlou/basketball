@@ -256,7 +256,7 @@ rings = 4
 
 extents = Vector3( 1, 1, 1 )
 
-[node name="Hoop" type="Spatial" index="0"]
+[node name="Hoop" type="Spatial"]
 
 [node name="LowerPole" type="MeshInstance" parent="." index="0"]
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Court.gd" type="Script" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Hoop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Arm.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -105,6 +105,14 @@ adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background" ]
+
+[sub_resource type="Curve3D" id=3]
+
+bake_interval = 0.2
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.250755, -0.291902, -0.178272, 0, 0, 0, 0, 0, 0, 0.466087, 0.217935, -0.108776, 0, 0, 0, 0, 0, 0, 0.505513, 0.776828, -0.0423901 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
 
 [node name="Court" type="Node" index="0"]
 
@@ -209,12 +217,26 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Ball" parent="." index="4" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39535, 2.96289, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.745747, 3.34881, -0.219692 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Player" parent="." index="5" instance=ExtResource( 5 )]
+[node name="ArmPath" type="Path" parent="." index="5"]
 
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.458589, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30857, -0.128452 )
+curve = SubResource( 3 )
+
+[node name="ArmPathFollow" type="PathFollow" parent="ArmPath" index="0"]
+
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotation_mode = 0
+cubic_interp = true
+loop = false
+
+[node name="Arm" parent="ArmPath/ArmPathFollow" index="0" instance=ExtResource( 5 )]
+
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.428092, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 
